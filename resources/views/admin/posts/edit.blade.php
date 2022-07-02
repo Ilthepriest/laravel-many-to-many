@@ -3,7 +3,7 @@
 @section('content')
 <h2>Edit {{$post->title}}</h2>
 @include('partials.errors')
-<form action="{{route('admin.posts.update', $post->slug)}}" method="post">
+<form action="{{route('admin.posts.update', $post->slug)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -14,10 +14,10 @@
 
     <div class="mb-3">
         <div class="media">
-            <img width="150" src="{{$post->cover_image}}" alt="{{$post->title}}">
+            <img width="150" src="{{asset('storage/' . $post->cover_image)}}" alt="{{$post->title}}">
         </div>
-      <label for="cover_image" class="form-label">cover_image</label>
-      <input type="text" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" placeholder="Inserisci titolo" aria-describedby="cover_imageHelper" value="{{old('cover_image', $post->cover_image)}}">
+      <label for="cover_image" class="form-label">Replace</label>
+      <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" placeholder="Inserisci titolo" aria-describedby="cover_imageHelper">
       <small id="cover_imageHelper" class="text-muted">Inserisci il testo</small>
     </div>
 
